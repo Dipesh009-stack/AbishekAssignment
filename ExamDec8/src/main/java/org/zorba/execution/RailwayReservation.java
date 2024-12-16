@@ -24,19 +24,19 @@ public class RailwayReservation {
             tx = session.beginTransaction();
 
             List<General> generalList = getGeneral(sc);
-            System.out.println(generalList);
+
             for(General ge : generalList){
-                session.persist(ge);
+//                session.persist(ge);
+                tx.commit();
             }
-//            List<PhysicallyHandicapp> physicallyHandicapps = getPhysicallyHandicapp(sc);
-//            for(PhysicallyHandicapp ph : physicallyHandicapps ){
+            List<PhysicallyHandicapp> physicallyHandicapps = getPhysicallyHandicapp(sc);
+            for(PhysicallyHandicapp ph : physicallyHandicapps ){
 //                session.persist(ph);
-//            }
-//            List<SeniorCitizen> seniorCitizens = getseniorCitizens(sc);
-//            System.out.println(seniorCitizens);
-//            for(SeniorCitizen ph : seniorCitizens ){
+            }
+            List<SeniorCitizen> seniorCitizens = getseniorCitizens(sc);
+            for(SeniorCitizen ph : seniorCitizens ){
 //                session.persist(ph);
-//            }
+            }
         }
         catch(Exception e){
             System.err.println(e.getMessage());
@@ -44,7 +44,9 @@ public class RailwayReservation {
 
         String fetchPhysicallyHandicapp = " from PhysicallyHandicapp";
         List<PhysicallyHandicapp> physicallyHandicapps = session.createQuery(fetchPhysicallyHandicapp).getResultList();
-
+        for(PhysicallyHandicapp ph : physicallyHandicapps){
+            System.out.println(ph.getName()+" " + ph.getEmail()+" "+ ph.getEmail()+" "+ ph.getDestination()+" "+ph.getPassengerId()+" "+ph.getProofOfDisability()+" "+ph.getProofOfDisability());
+        }
 
 
 
