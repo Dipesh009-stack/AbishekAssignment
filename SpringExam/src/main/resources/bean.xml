@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-init-method="init" default-destroy-method="destroy">
+    <bean name="balcony" class="org.zorba.Balcony"/>
+    <bean name="rentOfFlat" class="org.zorba.RentOfFlat">
+        <constructor-arg ref="rentOfOneBHKFlat"/>
+        <constructor-arg ref="rentOfTwoBHKFlat"/>
+    </bean>
+    <bean name="property" class="org.zorba.Property">
+        <constructor-arg  ref="rentOfFlat"/>
+        <constructor-arg  ref="selfOwnedFlat"/>
+    </bean>
+    <bean name="rentOfOneBHKFlat" class="org.zorba.RentOfOneBHKFlat"/>
+
+    <bean name="rentOfTwoBHKFlat" class="org.zorba.RentOFTwoBHKFlat">
+        <constructor-arg ref="balcony"/>
+    </bean>
+
+<!--    Self owned using autowire-->
+    <bean name="selfOwnedFlat" class="org.zorba.SelfOwnedFlat" autowire="byType"/>
+    <bean name="selfOwnedOneBHKFlat" class="org.zorba.SelfOwnedOneBHKFlat" autowire="byType"/>
+    <bean name="selfOwnedTwoBHKFlat" class="org.zorba.SelfOwnedTwoBHKFlat" autowire="byType"/>
+    <bean name="selfOwnedThreeBHKFlat" class="org.zorba.SelfOwnedThreeBHKFlat" autowire="byName"/>
+
+
+</beans>
